@@ -1,10 +1,6 @@
 ﻿using CleanArchitectureSample.Application.Contracts.Persistence;
+using CleanArchitectureSample.Application.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanArchitectureSample.Application.Features.Member.Commands.CreateMember
 {
@@ -20,6 +16,12 @@ namespace CleanArchitectureSample.Application.Features.Member.Commands.CreateMem
         public async Task<int> Handle(CreateMemberRequest request, CancellationToken cancellationToken)
         {
             //validating the incoming data
+            var validator = new CreateMemberRequestValidator();
+            var validationResult = validator.Validate(request);
+            if (validationResult.IsValid == false)
+            {
+                throw new BadRequestException("something went wrong.", validationResult.ToDictionary());
+            }
 
             //convert data to domain entity
             var itemToAdd = new Domain.Member
@@ -36,8 +38,7 @@ namespace CleanArchitectureSample.Application.Features.Member.Commands.CreateMem
             await repository.CreateAsync(itemToAdd);
 
             //return value
-
-            throw new NotImplementedException();
+            return itemToAdd.Id;
         }
     }
 }
