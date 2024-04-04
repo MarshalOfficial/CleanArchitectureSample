@@ -7,8 +7,8 @@ namespace CleanArchitectureSample.Persistence.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private readonly CleanArchitectureDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly CleanArchitectureDbContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository(CleanArchitectureDbContext context)
         {

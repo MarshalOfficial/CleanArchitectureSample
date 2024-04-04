@@ -11,13 +11,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Features\Member\Commands\DeleteMember\" />
-		<Folder Include="Features\Member\Commands\UpdateMember\" />
 		<Folder Include="Features\Member\Queries\GetAllMembers\" />
 		<Folder Include="Features\Member\Queries\GetMemberDetails\" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AutoMapper" />
 		<PackageReference Include="FluentValidation" />
 		<PackageReference Include="MediatR" />
 	</ItemGroup>

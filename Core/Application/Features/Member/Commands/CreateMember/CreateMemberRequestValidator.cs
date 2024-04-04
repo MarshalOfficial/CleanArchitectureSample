@@ -1,37 +1,31 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using CleanArchitectureSample.Application.Contracts.Persistence;
+using CleanArchitectureSample.Application.Features.Member.Commands._Share;
+using FluentValidation;
 
 
 namespace CleanArchitectureSample.Application.Features.Member.Commands.CreateMember
 {
     public class CreateMemberRequestValidator : AbstractValidator<CreateMemberRequest>
     {
-        public CreateMemberRequestValidator()
+        private IMapper _mapper;
+        private IMemberRepository _repository;
+
+        public CreateMemberRequestValidator(IMapper mapper, IMemberRepository repository)
         {
-            RuleFor(t => t.FirstName)
-                .NotNull()
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .MaximumLength(50).WithMessage("{PropertyName} must be fewer than 50 characters.");
+            _mapper = mapper;
+            _repository = repository;
 
-            RuleFor(t => t.LastName)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must be fewer than 50 characters.");
+            Include(new BaseMemberRequestValidator());
 
-            RuleFor(t => t.Email)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must be fewer than 50 characters.")
-                .EmailAddress().WithMessage("{PropertyName} must have a correct email format.");
+            RuleFor(t => t)
+                .MustAsync(UniqueMember).WithMessage("The member Already exists.");
+        }
 
-            RuleFor(t => t.Phone)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(12).WithMessage("{PropertyName} must be fewer than 12 characters.");
-
-            RuleFor(t => t.PostalCode)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Length(7).WithMessage("{PropertyName} must be 7 characters.");
+        private async Task<bool> UniqueMember(CreateMemberRequest request, CancellationToken token)
+        {
+            var entiry = _mapper.Map<Domain.Member>(request);
+            return await _repository.IsMemberUnique(entiry);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CleanArchitectureSample.Application.Contracts.Persistence;
+﻿using AutoMapper;
+using CleanArchitectureSample.Application.Contracts.Persistence;
 using CleanArchitectureSample.Application.Exceptions;
 using MediatR;
 
@@ -6,38 +7,33 @@ namespace CleanArchitectureSample.Application.Features.Member.Commands.CreateMem
 {
     public class CreateMemberRequestHandler : IRequestHandler<CreateMemberRequest, int>
     {
-        private readonly IMemberRepository repository;
+        private readonly IMapper _mapper;
+        private readonly IMemberRepository _repository;
 
-        public CreateMemberRequestHandler(IMemberRepository repository)
+        public CreateMemberRequestHandler(IMapper mapper, IMemberRepository repository)
         {
-            this.repository = repository;
+            _mapper = mapper;
+            _repository = repository;
         }
 
         public async Task<int> Handle(CreateMemberRequest request, CancellationToken cancellationToken)
         {
-            //validating the incoming data
-            var validator = new CreateMemberRequestValidator();
+            // validating incoming data
+            var validator = new CreateMemberRequestValidator(_mapper, _repository);
             var validationResult = validator.Validate(request);
+
             if (validationResult.IsValid == false)
             {
-                throw new BadRequestException("something went wrong.", validationResult.ToDictionary());
+                throw new BadRequestException("Something went wrong.", validationResult.ToDictionary());
             }
 
-            //convert data to domain entity
-            var itemToAdd = new Domain.Member
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Phone = request.Phone,
-                Email = request.Email,
-                PostalCode = request.PostalCode,
-                DateOfBirth = request.DateOfBirth,
-            };
+            // convert to domain entity data
+            var itemToAdd = _mapper.Map<Domain.Member>(request);
 
-            //add to database
-            await repository.CreateAsync(itemToAdd);
+            // add to database
+            await _repository.CreateAsync(itemToAdd);
 
-            //return value
+            // return value
             return itemToAdd.Id;
         }
     }
