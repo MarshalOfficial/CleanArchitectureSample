@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public int CreateBy { get; set; }
+        public int CreatedBy { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
         public DateTime ModificationDate { get; set; } = DateTime.Now;

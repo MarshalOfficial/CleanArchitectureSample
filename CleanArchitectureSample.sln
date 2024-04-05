@@ -9,19 +9,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{50854EB4-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A549488B-7A26-4BC4-96F9-66F620AB9CE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Api", "Api\CleanArchitectureSample.Api\CleanArchitectureSample.Api.csproj", "{69550F7D-D6BB-4879-B9CF-73E1F49CBFFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureSample.Api", "Api\CleanArchitectureSample.Api\CleanArchitectureSample.Api.csproj", "{69550F7D-D6BB-4879-B9CF-73E1F49CBFFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Domain", "Core\CleanArchitectureSample.Domain\CleanArchitectureSample.Domain.csproj", "{383BC720-E673-41CE-AA4A-4EC8029C7EDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureSample.Domain", "Core\CleanArchitectureSample.Domain\CleanArchitectureSample.Domain.csproj", "{383BC720-E673-41CE-AA4A-4EC8029C7EDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Application", "Core\Application\CleanArchitectureSample.Application.csproj", "{476E0224-EE40-4D01-AF07-52DAAE6AB00C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureSample.Application", "Core\Application\CleanArchitectureSample.Application.csproj", "{476E0224-EE40-4D01-AF07-52DAAE6AB00C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Infrastructure", "Infrastructure\CleanArchitectureSample.Infrastructure\CleanArchitectureSample.Infrastructure.csproj", "{6EA711F2-11CC-44EF-92E0-CF81D52F38F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureSample.Infrastructure", "Infrastructure\CleanArchitectureSample.Infrastructure\CleanArchitectureSample.Infrastructure.csproj", "{6EA711F2-11CC-44EF-92E0-CF81D52F38F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureSample.Persistence", "Infrastructure\CleanArchitectureSample.Persistence\CleanArchitectureSample.Persistence.csproj", "{B9F479A5-DA69-44FB-908A-F6A0D81F40B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureSample.Persistence", "Infrastructure\CleanArchitectureSample.Persistence\CleanArchitectureSample.Persistence.csproj", "{B9F479A5-DA69-44FB-908A-F6A0D81F40B3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B6EC926-A20E-4355-85F6-84C7890DAB40}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Packages.props = Directory.Packages.props
+		Migration.md = Migration.md
 	EndProjectSection
 EndProject
 Global
