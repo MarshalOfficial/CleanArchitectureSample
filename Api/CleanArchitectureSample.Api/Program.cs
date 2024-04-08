@@ -27,6 +27,9 @@ namespace CleanArchitectureSample.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseExceptionHandler("/errors");
+            //app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

@@ -20,7 +20,7 @@ namespace CleanArchitectureSample.Application.Features.Member.Commands.CreateMem
         {
             // validating incoming data
             var validator = new CreateMemberRequestValidator(_mapper, _repository);
-            var validationResult = validator.Validate(request);
+            var validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.IsValid == false)
             {
