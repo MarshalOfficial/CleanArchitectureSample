@@ -1,5 +1,6 @@
 using CleanArchitectureSample.Application.Configurations;
 using CleanArchitectureSample.Persistence.Configurations;
+using CleanArchitectureSample.Infrastructure.Configurations;
 
 namespace CleanArchitectureSample.Api
 {
@@ -17,6 +18,7 @@ namespace CleanArchitectureSample.Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddApplicationServices();
             builder.Services.AddPersistenceServices(builder.Configuration);
+            builder.Services.AddInfrastructureServices(builder.Configuration);
 
             var app = builder.Build();
 
