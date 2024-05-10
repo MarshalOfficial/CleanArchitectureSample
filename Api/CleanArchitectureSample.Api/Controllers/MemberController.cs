@@ -4,7 +4,6 @@ using CleanArchitectureSample.Application.Features.Member.Commands.UpdateMember;
 using CleanArchitectureSample.Application.Features.Member.Queries.GetAllMembers;
 using CleanArchitectureSample.Application.Features.Member.Queries.GetMemberDetails;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitectureSample.Api.Controllers
